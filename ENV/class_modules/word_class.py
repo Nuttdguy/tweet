@@ -1,7 +1,7 @@
 import os
 import random
-# from class_modules.dictogram_class import Dictogram # FOR PRODUCTION RELEASE
-from dictogram_class import Dictogram
+from class_modules.dictogram_class import Dictogram # FOR PRODUCTION RELEASE
+# from dictogram_class import Dictogram
 
 
 class Word_Generator():
@@ -14,8 +14,8 @@ class Word_Generator():
         self.word = ''
         if iterable and phrase == False:
             self.random_word(iterable)
-        else:
-            self.random_markov_word(iterable)
+        # else:
+        #     self.random_markov_word(iterable)
         # elif iterable and phrase == False:
         #     self.random_word(iterable)
 
@@ -23,13 +23,13 @@ class Word_Generator():
     ### RETURNS A SINGLE WORD -- NO SEED, JUST CUMULATIVE UP TO RANDOM NUMBER
     def random_word(self, iterable):
         cumulative_prob = 0.0
-        rand = random.uniform(0, .2)
+        rand = random.uniform(0, 1)
         key_arr = list(iterable.keys())
         # print(self.types, self.tokens)
 
         for idx in range(0, self.types):    ### TYPES, DISTINCT WORDS
-            # print('cummulative: {}  ==  rand: {}'.format(cumulative_prob, rand))
-            # print('iterable {}  == self.tokens {}'.format(iterable[key_arr[idx]], self.tokens))
+            print('cummulative: {}  ==  rand: {}'.format(cumulative_prob, rand))
+            print('iterable {}  == self.tokens {} == index: {}'.format(iterable[key_arr[idx]], self.tokens, idx))
             cumulative_prob += float(iterable[key_arr[idx]] / self.tokens)  ### TOKEN, TOTAL ALL WORDS
             if cumulative_prob > rand:
                 self.word = key_arr[idx]
@@ -52,16 +52,9 @@ class Word_Generator():
                     ## (2) GET INNER KEYS OF NESTED DICTIONARY, CONVERT INTO LIST ENABLE LOOPING
                     inner_keys = list(iterable[key_list[idx_1]].keys())
                     # print('INNER KEYS: {}'.format(inner_keys))
-
-<<<<<<< HEAD
-<<<<<<< HEAD
                     # print('SHOULD BE COUNT: {}'.format(len(inner_keys)))
-=======
                     print('SHOULD BE COUNT: {}'.format(len(inner_keys)))
->>>>>>> 88a4480295fe12300b3bef04969234d1d681c0dd
-=======
-                    print('SHOULD BE COUNT: {}'.format(len(inner_keys)))
->>>>>>> 88a4480295fe12300b3bef04969234d1d681c0dd
+
                     ### (3) GET TOTAL COUNT OF INNER KEYS
                     for key_idx in range(len(inner_keys)):
                         # print( iterable[key_list[idx_1]][inner_keys[key_idx]] )
@@ -69,27 +62,18 @@ class Word_Generator():
 
                     for idx_2 in range(len(inner_keys)):
                         # USE ORIGINAL KEY, GET THE VALUES OF IT (I.E. USE NOT CONVERTED TO STRING KEY)
-
-<<<<<<< HEAD
-<<<<<<< HEAD
                         # word_window = ''.join(key_list[idx_1]) + ' ' + ''.join(inner_keys[idx_2]) 
                         word_window = ''.join(inner_keys[idx_2]) 
                         print('WORD WINDOW: {} == CURRENT KEY: {}'.format(word_window, current_key))
 
                         cumulative_prob += float(iterable[key_list[idx_1]][inner_keys[idx_2]] / total_tokens)  ### TOKEN, TOTAL ALL WORDS
                         # print('cummulative: {} == tokens: {} ==  rand: {}'.format(cumulative_prob, total_tokens, rand))
-=======
-=======
->>>>>>> 88a4480295fe12300b3bef04969234d1d681c0dd
-                        word_window = ''.join(key_list[idx_1]) + ' ' + ''.join(inner_keys[idx_2]) 
-                        print('WORD WINDOW: {} == CURRENT KEY: {}'.format(word_window, current_key))
 
-                        cumulative_prob += float(iterable[key_list[idx_1]][inner_keys[idx_2]] / total_tokens)  ### TOKEN, TOTAL ALL WORDS
-                        print('cummulative: {}  ==  rand: {}'.format(cumulative_prob, rand))
-<<<<<<< HEAD
->>>>>>> 88a4480295fe12300b3bef04969234d1d681c0dd
-=======
->>>>>>> 88a4480295fe12300b3bef04969234d1d681c0dd
+                        # word_window = ''.join(key_list[idx_1]) + ' ' + ''.join(inner_keys[idx_2]) 
+                        # print('WORD WINDOW: {} == CURRENT KEY: {}'.format(word_window, current_key))
+
+                        # cumulative_prob += float(iterable[key_list[idx_1]][inner_keys[idx_2]] / total_tokens)  ### TOKEN, TOTAL ALL WORDS
+                        # print('cummulative: {}  ==  rand: {}'.format(cumulative_prob, rand))
 
                         if cumulative_prob > rand:
                             print('WORD {}:'.format(word_window))

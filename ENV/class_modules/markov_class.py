@@ -1,6 +1,6 @@
 import random
-# from class_modules.dictogram_class import Dictogram
-from dictogram_class import Dictogram
+from class_modules.dictogram_class import Dictogram
+# from dictogram_class import Dictogram
 
 
 class Markov_Model(Dictogram):

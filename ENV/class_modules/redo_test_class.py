@@ -1,6 +1,8 @@
 from read_class import Read
 from normalize_class import Normalize
 from dictogram_class import Dictogram
+from word_class import Word_Generator
+from markov_class import Markov_Model
 import os
 
 
@@ -42,7 +44,7 @@ def write_sentence(current_sentence, mode='a+'):
 
 
 if __name__ == '__main__':
-    filepath = './../corpus_copy.txt'
+    filepath = '../ENV/corpus_copy.txt'
 
     # initialize Read
     document_arr = Read(filepath)

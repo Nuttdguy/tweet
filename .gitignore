@@ -23,3 +23,5 @@ ENV/bin/
 ENV/templates
 ENV/class_modules/output_test.txt
 
+.vscode
+.iml

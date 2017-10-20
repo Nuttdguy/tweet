@@ -48,7 +48,7 @@ def write_result_test(output_doc, current_word, test_run, model, mode='a+'):
 
 def write_sentence(current_sentence, mode='a+'):
 
-    output_file = open('/app/ENV/generated_sentences.txt', mode)
+    output_file = open('../ENV/generated_sentences.txt', mode)
     writing = str(current_sentence)
 
     # OUTPUT SENTENCE
@@ -57,7 +57,8 @@ def write_sentence(current_sentence, mode='a+'):
 
 
 def generate_sentence(length):
-    filepath = '/app/ENV/corpus_copy.txt' # production file path
+    # filepath = '/app/ENV/corpus_copy.txt' # production file path
+    filepath = '../ENV/corpus_copy.txt' # production file path
     print(filepath)
     document_arr = Read(filepath)
     print(document_arr)
@@ -87,6 +88,7 @@ def generate_sentence(length):
     if markov_word is not None:
         sentence = markov_word[0].capitalize() + markov_word[1:] + ' '
 
+    for idx in range(0, length):
         # RETURN THE MARKOV MODEL, GIVEN THE CURRENT WORD AND
         # ALL FOLLOWING WORDS, OF THE GIVEN KEY
         ##### (5) ARRAY (ORIGINAL), WORD & WINDOW-SIZE IS INPUT >> NOTHING IS RETURNED, OBJECT IS UPDATED
