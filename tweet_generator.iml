@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="PYTHON_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/modules" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/ENV/class_modules" isTestSource="false" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="webpack-DefinitelyTyped" level="application" />
+    <orderEntry type="library" name="Dojo-1.8.3" level="application" />
+    <orderEntry type="library" name="Prototype-1.7.1" level="application" />
+    <orderEntry type="library" name="ExtJS GPL-4.2" level="application" />
+    <orderEntry type="library" name="jQuery-2.0.0" level="application" />
+    <orderEntry type="library" name="script.aculo.us-1.9.0" level="application" />
+    <orderEntry type="library" name="Modernizr-2.6.2" level="application" />
+    <orderEntry type="library" name="MooTools-1.4.5" level="application" />
+    <orderEntry type="library" name="Knockout-2.2.1" level="application" />
+    <orderEntry type="library" name="YUI-3.10.0" level="application" />
+  </component>
+</module>
