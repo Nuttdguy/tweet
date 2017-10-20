@@ -1,7 +1,6 @@
 import os
 import random
 from class_modules.dictogram_class import Dictogram # FOR PRODUCTION RELEASE
-# from dictogram_class import Dictogram
 
 
 class Word_Generator():
@@ -93,80 +92,11 @@ class Word_Generator():
                         print('PRE-KEY: {} == KEY: {} == Value: {}'.format(key_list[idx], key, value))
                         return key
 
-
-    # def markov_random_seed(self, iterable, window):
-    #     cumulative_prob = 0.0
-    #     rand = random.uniform(0, 1)
-    #     key_arr = list(iterable.keys())
-    #     for idx in range(0, self.types):
-    #         current_key = key_arr[idx] + ' ' + key_arr[idx + window]
-    #         cumulative_prob += float(iterable[key_arr[idx]] / self.tokens)  ### TOKEN, TOTAL ALL WORDS
-    #         # print('cummulative: {}  ==  rand: {}'.format(cumulative_prob, rand))
-    #         # print('iterable {}  == self.tokens {}'.format(iterable[key_arr[idx]], self.tokens))
-    #         if cumulative_prob > rand:
-    #             print('Key: {}'.format(current_key))
-    #             return str(current_key)
-        
-
     def get_sentence(self):
         return self.sentence
 
 
     def get_word(self):
         return self.word
-
-
-
-
-    # Get a Start Seed, append as first sentence
-    # get any words, keys, following the seed word
-    # Use HashTable and LinkedList to generate sentence
-
-    # def gen_markov_sentence(self, markov_model, length=10):
-    #     """  generate markov sentence given a markov model """
-    #     current_word = (self.random_markov_word(markov_model)).replace('[', '').replace(']', '').replace('\'', '')
-    #     sentence = current_word + ' '
-    #     for idx in range(0, length):
-    #         next_word = self.random_markov_word(markov_model)
-    #         next_word = next_word;
-    #         sentence += str(next_word)
-    #     return sentence
-
-    # def random_sentence(self, iterable, length=10):
-    #     cumulative_prob = 0.0
-    #     key_arr = list(iterable.keys())
-    #     for i in range(length):
-    #         rand = random.uniform(0, 1)
-    #         for idx in range(0, self.types):
-    #             cumulative_prob += iterable[key_arr[idx]]
-    #             if cumulative_prob > rand:
-    #                 self.sentence += key_arr[idx] + ' '
-    #                 cumulative_prob = 0.0
-    #                 break
-
-    # def random_markov_word(self, markov_model):
-    #     """  generate a word given a markov model """
-    #     cumulative_prob = 0.0
-    #     rand = random.uniform(0, 1)
-    #     key_arr = list(markov_model.keys())
-    #     types = len(markov_model)
-    #     for idx in range(0, len(key_arr)):
-    #         for key, val in markov_model.items():
-    #             print('key: {} == value {}: '.format(key, val))
-    #             cumulative_prob += float(val / types)
-    #             # print(cumulative_prob, rand, types)
-    #             if cumulative_prob > rand:
-    #                 self.word = key
-    #                 return self.word
-
-    # def random_start(self, model):
-    #     if 'END' in model:
-    #         seed_word = 'END'
-    #         while seed_word == 'END':
-    #             seed_word = model['END'].random_word()
-    #         return seed_word
-    #     return random.choice(model.keys())
-
-
 
 
