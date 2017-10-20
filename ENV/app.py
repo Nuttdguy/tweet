@@ -48,7 +48,7 @@ def write_result_test(output_doc, current_word, test_run, model, mode='a+'):
 
 def write_sentence(current_sentence, mode='a+'):
 
-    output_file = open('/app/ENV/generated_sentences.txt', mode)
+    output_file = open('/app/ENV/generated_sentences.txt', mode) # heroku file path
     # output_file = open('../ENV/generated_sentences.txt', mode)
     writing = str(current_sentence)
 
@@ -58,7 +58,7 @@ def write_sentence(current_sentence, mode='a+'):
 
 
 def generate_sentence(length):
-    filepath = '/app/ENV/corpus_copy.txt' # production file path
+    filepath = '/ENV/corpus_copy.txt' # heroku file path
     # filepath = '../ENV/corpus_copy.txt' # production file path
     print(filepath)
     document_arr = Read(filepath)
