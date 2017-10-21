@@ -1,1 +1,1 @@
-web: python3 ENV/app.py
+web: gunicorn app:app
