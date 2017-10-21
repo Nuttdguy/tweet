@@ -27,8 +27,8 @@ class Word_Generator():
         # print(self.types, self.tokens)
 
         for idx in range(0, self.types):    ### TYPES, DISTINCT WORDS
-            print('cummulative: {}  ==  rand: {}'.format(cumulative_prob, rand))
-            print('iterable {}  == self.tokens {} == index: {}'.format(iterable[key_arr[idx]], self.tokens, idx))
+            # print('cummulative: {}  ==  rand: {}'.format(cumulative_prob, rand))
+            # print('iterable {}  == self.tokens {} == index: {}'.format(iterable[key_arr[idx]], self.tokens, idx))
             cumulative_prob += float(iterable[key_arr[idx]] / self.tokens)  ### TOKEN, TOTAL ALL WORDS
             if cumulative_prob > rand:
                 self.word = key_arr[idx]
@@ -52,7 +52,7 @@ class Word_Generator():
                     inner_keys = list(iterable[key_list[idx_1]].keys())
                     # print('INNER KEYS: {}'.format(inner_keys))
                     # print('SHOULD BE COUNT: {}'.format(len(inner_keys)))
-                    print('SHOULD BE COUNT: {}'.format(len(inner_keys)))
+                    # print('SHOULD BE COUNT: {}'.format(len(inner_keys)))
 
                     ### (3) GET TOTAL COUNT OF INNER KEYS
                     for key_idx in range(len(inner_keys)):
@@ -75,7 +75,7 @@ class Word_Generator():
                         # print('cummulative: {}  ==  rand: {}'.format(cumulative_prob, rand))
 
                         if cumulative_prob > rand:
-                            print('WORD {}:'.format(word_window))
+                            # print('WORD {}:'.format(word_window))
                             return word_window
         else:
             for idx in range(0, len(key_arr)):    ### TYPES, DISTINCT WORDS
