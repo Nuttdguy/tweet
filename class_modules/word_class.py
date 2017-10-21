@@ -63,7 +63,7 @@ class Word_Generator():
                         # USE ORIGINAL KEY, GET THE VALUES OF IT (I.E. USE NOT CONVERTED TO STRING KEY)
                         # word_window = ''.join(key_list[idx_1]) + ' ' + ''.join(inner_keys[idx_2]) 
                         word_window = ''.join(inner_keys[idx_2]) 
-                        print('WORD WINDOW: {} == CURRENT KEY: {}'.format(word_window, current_key))
+                        # print('WORD WINDOW: {} == CURRENT KEY: {}'.format(word_window, current_key))
 
                         cumulative_prob += float(iterable[key_list[idx_1]][inner_keys[idx_2]] / total_tokens)  ### TOKEN, TOTAL ALL WORDS
                         # print('cummulative: {} == tokens: {} ==  rand: {}'.format(cumulative_prob, total_tokens, rand))

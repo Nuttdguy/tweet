@@ -60,9 +60,7 @@ def write_sentence(current_sentence, mode='a+'):
 def generate_sentence(length):
     filepath = './corpus_copy.txt' # heroku file path
     # filepath = '../ENV/corpus_copy.txt' # production file path
-    print(filepath)
     document_arr = Read(filepath)
-    print(document_arr)
 
     # initialize Read
     document_arr = Read(filepath)
