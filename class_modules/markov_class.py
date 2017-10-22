@@ -25,15 +25,22 @@ class Markov_Model(Dictogram):
 
     def nth_order_markov(self, iterable, word, window):
         """  Generate Markov with a view word depth, nth order  """
-        # key_list = list(iterable.keys())
+        model = dict()
         for idx in range(0, len(iterable) - (1 + window) ):
             word_view = tuple(iterable[idx: idx + window])
 
-            if word in self.markov_model:
-                self.markov_model[word_view].update([iterable[idx + 1] + ' ' + iterable[idx + 2]])
-            else:
-                self.markov_model[word_view] = Dictogram([iterable[idx + 1] + ' ' + iterable[idx + 2]])
-
+            if word == iterable[idx]:
+                # print('Nth Order Word: {} :: {} :: {} :: {} '.format(word_view, word, iterable[idx + 1], iterable[idx + 2]))
+                # print('Nth Order Word: {} :: {} '.format(word_view, iterable[idx + 2]))
+                if word in model:
+                    # self.markov_model[word_view].update([iterable[idx + 1] + ' ' + iterable[idx + 2]])
+                    model[word_view].update([iterable[idx + 2]])
+                    # print(model)
+                else:
+                    # self.markov_model[word_view] = Dictogram([iterable[idx + 1] + ' ' + iterable[idx + 2]])
+                    model[word_view] = Dictogram([iterable[idx + 2]])
+        # print(model)
+        return model
 
     def get_markov_model(self):
         return self.markov_model

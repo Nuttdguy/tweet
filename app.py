@@ -34,7 +34,7 @@ def gen_markov(word_arr, current_word, window=1):
                 markov_model[current_word] = Dictogram([word_arr[i+1]])
     return markov_model
 
-
+# write_result_test('./ENV/output_test.txt', markov_word, 1, markov_dictogram5) 
 def write_result_test(output_doc, current_word, test_run, model, mode='a+'):
     output_file = open(output_doc, mode)
     writing = str(test_run) + '  ===== ' 
@@ -56,6 +56,24 @@ def write_sentence(current_sentence, mode='a+'):
     output_file.write(current_sentence)
     output_file.close()
 
+def nth_order_markov(iterable, word, window):
+    """  Generate Markov with a view word depth, nth order  """
+    model = dict()
+    for idx in range(0, len(iterable) - (1 + window) ):
+        word_view = tuple(iterable[idx: idx + window + 1])
+
+        if word == iterable[idx]:
+            # print('Nth Order Word: {} :: {} :: {} :: {} '.format(word_view, word, iterable[idx + 1], iterable[idx + 2]))
+            # print('Nth Order Word: {} :: {} '.format(word_view, iterable[idx + 2]))
+            if word in model:
+                # self.markov_model[word_view].update([iterable[idx + 1] + ' ' + iterable[idx + 2]])
+                model[word_view].update([iterable[idx + 2]])
+                # print(model)
+            else:
+                # self.markov_model[word_view] = Dictogram([iterable[idx + 1] + ' ' + iterable[idx + 2]])
+                model[word_view] = Dictogram([iterable[idx + 2]])
+    # print(model)
+    return model
 
 def generate_sentence(length):
     filepath = './corpus_copy.txt' # heroku file path
@@ -91,16 +109,16 @@ def generate_sentence(length):
         # RETURN THE MARKOV MODEL, GIVEN THE CURRENT WORD AND
         # ALL FOLLOWING WORDS, OF THE GIVEN KEY
         ##### (5) ARRAY (ORIGINAL), WORD & WINDOW-SIZE IS INPUT >> NOTHING IS RETURNED, OBJECT IS UPDATED
-        markov_dictogram5 = Markov_Model(word_list, markov_word, 1)
+        markov_dictogram = nth_order_markov(word_list, markov_word, 1)
 
         ###### (6) MARKOV-MODEL DICTOGRAM WITH A WINDOW-SIZE '2' IS RETURNED
-        markov_dictogram = markov_dictogram5.get_markov_model()
+        # markov_dictogram = markov_dictogram5.get_markov_model()
 
         ####### (7) DICTOGRAM-WINDOW-SIZE-2, CURRENT WORD > PRECONDITION: INSTANCE OF WORD-GENERATOR
         markov_word = markov_dictogram3.random_markov_word(markov_dictogram, markov_word, 1)
-        
+
         # (3) OUTPUT MODEL DICTOGRAM 
-        # write_result_test('/app/ENV/output_test.txt', markov_word, 1, markov_dictogram)  # OUTPUT THE RESULT
+        write_result_test('./ENV/output_test.txt', markov_word, 1, markov_dictogram)  # OUTPUT THE RESULT
         
         # (4) CHECK RESULT
         if markov_word is not None:

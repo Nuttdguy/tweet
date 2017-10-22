@@ -37,46 +37,61 @@ class Word_Generator():
     def random_markov_word(self, iterable, word_to_match, window=0):
         cumulative_prob = 0.0
         rand = random.uniform(0, 1)
-        key_arr = list(iterable.keys())
+        key_arr = list(iterable.keys())  # [('drives', 'you'), ('drives', 'the'), ('drives', 'us')]
         total_tokens = 0
 
+        # GET TOTAL TOKENS
+        for key1, value1 in iterable.items():
+            for key2, value2 in value1.items():
+                total_tokens += value2
+
         if window == 1:
-            for idx_1 in range(0, len(key_arr)):    ### TYPES, DISTINCT WORDS
-                key_list = list(iterable.keys())
-                current_key = ''.join(key_list[idx_1])
+            for key1, value1 in iterable.items():
+                # print(iterable[key_arr[item]])
+                for key2, value2 in value1.items():
+                    # print('key1: {} :: Value1: {}\n Key2: {} Value2: {}'.format(key1, key2, value1, value2))
+                    cumulative_prob += float( value2 / total_tokens)
 
-                # (1) MATCH THE WORD, WHEN MATCHED - 
-                if current_key == word_to_match:
-                    # print('WORD TO MATCH: {} == KEY: {}'.format(word_to_match, current_key))
-                    ## (2) GET INNER KEYS OF NESTED DICTIONARY, CONVERT INTO LIST ENABLE LOOPING
-                    inner_keys = list(iterable[key_list[idx_1]].keys())
-                    # print('INNER KEYS: {}'.format(inner_keys))
-                    # print('SHOULD BE COUNT: {}'.format(len(inner_keys)))
-                    # print('SHOULD BE COUNT: {}'.format(len(inner_keys)))
+                    if cumulative_prob > rand:
+                        word_window = key1[1] + ' ' + key2
+                        print('WORD {} {}:'.format(key1[1], key2))
+                        return word_window
+                    
+            # for idx_1 in range(0, len(key_arr)):    ### TYPES, DISTINCT WORDS
+            #     key_list = list(iterable.keys())
+            #     current_key = ''.join(key_list[idx_1])
 
-                    ### (3) GET TOTAL COUNT OF INNER KEYS
-                    for key_idx in range(len(inner_keys)):
-                        # print( iterable[key_list[idx_1]][inner_keys[key_idx]] )
-                        total_tokens += iterable[key_list[idx_1]][inner_keys[key_idx]]
+            #     # (1) MATCH THE WORD, WHEN MATCHED - 
+            #     if current_key == word_to_match:
+            #         print('WORD TO MATCH: {} == KEY: {}'.format(word_to_match, current_key))
+            #         ## (2) GET INNER KEYS OF NESTED DICTIONARY, CONVERT INTO LIST ENABLE LOOPING
+            #         inner_keys = list(iterable[key_list[idx_1]].keys())
+            #         print('INNER KEYS: {}'.format(inner_keys))
+            #         # print('SHOULD BE COUNT: {}'.format(len(inner_keys)))
 
-                    for idx_2 in range(len(inner_keys)):
-                        # USE ORIGINAL KEY, GET THE VALUES OF IT (I.E. USE NOT CONVERTED TO STRING KEY)
-                        # word_window = ''.join(key_list[idx_1]) + ' ' + ''.join(inner_keys[idx_2]) 
-                        word_window = ''.join(inner_keys[idx_2]) 
-                        # print('WORD WINDOW: {} == CURRENT KEY: {}'.format(word_window, current_key))
+            #         ### (3) GET TOTAL COUNT OF INNER KEYS
+            #         for key_idx in range(len(inner_keys)):
+            #             # print( iterable[key_list[idx_1]][inner_keys[key_idx]] )
+            #             total_tokens += iterable[key_list[idx_1]][inner_keys[key_idx]]
 
-                        cumulative_prob += float(iterable[key_list[idx_1]][inner_keys[idx_2]] / total_tokens)  ### TOKEN, TOTAL ALL WORDS
-                        # print('cummulative: {} == tokens: {} ==  rand: {}'.format(cumulative_prob, total_tokens, rand))
+            #         for idx_2 in range(len(inner_keys)):
+            #             # USE ORIGINAL KEY, GET THE VALUES OF IT (I.E. USE NOT CONVERTED TO STRING KEY)
+            #             # word_window = ''.join(key_list[idx_1]) + ' ' + ''.join(inner_keys[idx_2]) 
+            #             word_window = ''.join(inner_keys[idx_2]) 
+            #             print('WORD WINDOW: {} == CURRENT KEY: {}'.format(word_window, current_key))
 
-                        # word_window = ''.join(key_list[idx_1]) + ' ' + ''.join(inner_keys[idx_2]) 
-                        # print('WORD WINDOW: {} == CURRENT KEY: {}'.format(word_window, current_key))
+            #             cumulative_prob += float(iterable[key_list[idx_1]][inner_keys[idx_2]] / total_tokens)  ### TOKEN, TOTAL ALL WORDS
+            #             # print('cummulative: {} == tokens: {} ==  rand: {}'.format(cumulative_prob, total_tokens, rand))
 
-                        # cumulative_prob += float(iterable[key_list[idx_1]][inner_keys[idx_2]] / total_tokens)  ### TOKEN, TOTAL ALL WORDS
-                        # print('cummulative: {}  ==  rand: {}'.format(cumulative_prob, rand))
+            #             # word_window = ''.join(key_list[idx_1]) + ' ' + ''.join(inner_keys[idx_2]) 
+            #             # print('WORD WINDOW: {} == CURRENT KEY: {}'.format(word_window, current_key))
 
-                        if cumulative_prob > rand:
-                            # print('WORD {}:'.format(word_window))
-                            return word_window
+            #             # cumulative_prob += float(iterable[key_list[idx_1]][inner_keys[idx_2]] / total_tokens)  ### TOKEN, TOTAL ALL WORDS
+            #             # print('cummulative: {}  ==  rand: {}'.format(cumulative_prob, rand))
+
+            #             if cumulative_prob > rand:
+            #                 print('WORD {}:'.format(word_window))
+            #                 return word_window
         else:
             for idx in range(0, len(key_arr)):    ### TYPES, DISTINCT WORDS
                 key_dict = iterable[key_arr[idx]] 
